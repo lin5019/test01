@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <!-- <style>
+            .red {
+                border: greenyellow 1px solid;
+                font-size: 30px;
+            }
+        </style> -->
+    </head>
+    <body>
+        <div id="test">
+            aaaaa
+            <div class="red">123</div>
+            aaaaa
+            <div class="red">123</div>
+            <div class="green">123</div>
+            <div class="red">123</div>
+            <div class="green">123</div>
+            <div class="red">123</div>
+            <div class="green">123</div>
+            <div class="red">123</div>
+        </div>
+
+        <script>
+            console.log(typeof 'name' === 'string');
+            window.dom = {
+                find(selector, scope) {
+                    return (scope || document).querySelectorAll(selector);
+                },
+                style(node, name, value) {
+                    if (arguments.length === 3) {
+                        node.style[name] = value;
+                    } else if (arguments.length === 2) {
+                        if (name instanceof Object) {
+                            for (const key in name) {
+                                node.style[key] = name[key];
+                            }
+                        } else if (typeof name === 'string') {
+                            return node.style[name];
+                        }
+                    }
+                },
+                each(nodeList, fn) {
+                    for (let index = 0; index < nodeList.length; index++) {
+                        fn.call(null, nodeList[index]);
+                    }
+                },
+            };
+
+            const div = dom.find('#test>.red')[0]; // 获取对应的元素
+            //console.log(div);
+            dom.style(div, 'color', 'red'); // 设置 div.style.color
+            //dom.style(div,{border: 'greenyellow 1px solid','font-size': '30px'})
+            //console.log(dom.style(div,'color'));
+
+            const divList = dom.find('.red'); // 获取多个 div.red 元素
+            console.log(divList);
+            dom.each(divList, n => console.log(n)); // 遍历 divList 里的所有元素
+            //dom.each(divList, n => dom.style(n,'color','green'));
+        </script>
+    </body>
+</html>
